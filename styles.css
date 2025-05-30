@@ -153,16 +153,16 @@ canvas {
     #response-buttons {
         bottom: 25px;
         gap: 15px;
-        flex-direction: column;
-        align-items: center;
+        flex-direction: row;
+        justify-content: center;
     }
 
     .response-btn {
         padding: 10px 20px;
         font-size: clamp(14px, 5vw, 16px);
-        min-width: 200px;
-        width: 90%;
-        max-width: 300px;
+        min-width: 120px;
+        flex: 1;
+        max-width: 150px;
     }
 
     #yes-btn:hover {
@@ -195,16 +195,16 @@ canvas {
     #response-buttons {
         bottom: 20px;
         gap: 12px;
-        flex-direction: column;
-        align-items: center;
+        flex-direction: row;
+        justify-content: center;
     }
 
     .response-btn {
         padding: 12px 20px;
         font-size: clamp(13px, 4.5vw, 15px);
-        min-width: 180px;
-        width: 85%;
-        max-width: 250px;
+        min-width: 100px;
+        flex: 1;
+        max-width: 130px;
     }
 
     #yes-btn:hover {
