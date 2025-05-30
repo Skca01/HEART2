@@ -549,17 +549,29 @@ yesBtn.addEventListener('click', () => {
 });
 
 noBtn.addEventListener('mouseenter', () => {
-    const maxDistance = Math.min(window.innerWidth, window.innerHeight) * 0.1;
+    const buttonRect = noBtn.getBoundingClientRect();
+    const containerWidth = window.innerWidth;
+    const containerHeight = window.innerHeight;
+    
+    const maxMoveX = Math.min(80, containerWidth * 0.15);
+    const maxMoveY = Math.min(60, containerHeight * 0.1);
+    
     const angle = Math.random() * 2 * Math.PI;
-    const distance = Math.min(50, maxDistance);
+    const distance = 30 + Math.random() * 25;
     const newX = Math.cos(angle) * distance;
     const newY = Math.sin(angle) * distance;
+    
     const currentTransform = window.getComputedStyle(noBtn).transform;
     const currentMatrix = new DOMMatrix(currentTransform);
     const currentX = currentMatrix.m41;
     const currentY = currentMatrix.m42;
-    const boundedX = Math.max(-window.innerWidth * 0.3, Math.min(window.innerWidth * 0.3, currentX + newX));
-    const boundedY = Math.max(-window.innerHeight * 0.3 + 60, Math.min(window.innerHeight * 0.3 - 60, currentY + newY));
+    
+    const proposedX = currentX + newX;
+    const proposedY = currentY + newY;
+    
+    const boundedX = Math.max(-maxMoveX, Math.min(maxMoveX, proposedX));
+    const boundedY = Math.max(-maxMoveY, Math.min(maxMoveY, proposedY));
+    
     noBtn.style.transform = `translate(${boundedX}px, ${boundedY}px) scale(0.9)`;
     noBtn.style.opacity = '0.7';
 });
