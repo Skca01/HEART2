@@ -135,8 +135,6 @@ function createCelebrationMessage() {
     ctx.shadowColor = '#ff66b2';
     ctx.shadowBlur = 20;
     ctx.textAlign = 'center';
-    ctx.fillText('My heart sings for you! 💖', 256, 100);
-    ctx.fillText('Together forever! ✨', 256, 150);
 
     const texture = new THREE.CanvasTexture(canvas);
     texture.needsUpdate = true;
@@ -148,7 +146,7 @@ function createCelebrationMessage() {
     });
     celebrationSprite = new THREE.Sprite(material);
     celebrationSprite.position.set(0, 2, 0);
-    celebrationSprite.scale.set(1.8, 0.9, 1);
+    celebrationSprite.scale.set(2.0, 1.0, 1); // Increased scale for celebration message
     heartGroup.add(celebrationSprite);
 }
 createCelebrationMessage();
@@ -173,13 +171,13 @@ const floatingHearts = [];
 const sparkles = [];
 const rainbowRings = [];
 
-// Slow, elegant fireworks
+// Slow, elegant fireworks with increased scale and particle count
 function createSlowFirework(x = 0, y = 0, z = 0) {
-    const particleCount = 40;
+    const particleCount = 60; // Increased particle count
     const particles = new THREE.Group();
     
     for (let i = 0; i < particleCount; i++) {
-        const geometry = new THREE.SphereGeometry(0.05, 8, 6);
+        const geometry = new THREE.SphereGeometry(0.07, 10, 8); // Larger size
         const material = new THREE.MeshBasicMaterial({
             color: new THREE.Color(`hsl(${Math.random() * 60 + 300}, 90%, 75%)`),
             transparent: true,
@@ -188,16 +186,16 @@ function createSlowFirework(x = 0, y = 0, z = 0) {
         const sphere = new THREE.Mesh(geometry, material);
         
         const angle = (i / particleCount) * Math.PI * 2;
-        const speed = 0.5 + Math.random() * 0.5;
+        const speed = 0.6 + Math.random() * 0.6;
         sphere.userData = {
             velocity: new THREE.Vector3(
                 Math.cos(angle) * speed,
-                Math.sin(angle) * speed + Math.random() * 0.3,
-                (Math.random() - 0.5) * 0.3
+                Math.sin(angle) * speed + Math.random() * 0.4,
+                (Math.random() - 0.5) * 0.4
             ),
-            life: 3.0 + Math.random() * 2.0,
-            maxLife: 3.0 + Math.random() * 2.0,
-            initialScale: 0.05 + Math.random() * 0.03
+            life: 3.5 + Math.random() * 2.5,
+            maxLife: 3.5 + Math.random() * 2.5,
+            initialScale: 0.07 + Math.random() * 0.04
         };
         particles.add(sphere);
     }
@@ -207,16 +205,16 @@ function createSlowFirework(x = 0, y = 0, z = 0) {
     fireworks.push(particles);
 }
 
-// Floating heart shapes
+// Floating heart shapes with increased scale
 function createFloatingHeart() {
     const canvas = document.createElement('canvas');
-    canvas.width = 64;
-    canvas.height = 64;
+    canvas.width = 96; // Increased canvas size
+    canvas.height = 96;
     const ctx = canvas.getContext('2d');
-    ctx.font = 'bold 40px serif';
+    ctx.font = 'bold 60px serif'; // Larger font
     ctx.fillStyle = `hsl(${Math.random() * 30 + 330}, 90%, 80%)`;
     ctx.textAlign = 'center';
-    ctx.fillText('💖', 32, 45);
+    ctx.fillText('💖', 48, 70);
 
     const texture = new THREE.CanvasTexture(canvas);
     const material = new THREE.SpriteMaterial({
@@ -231,25 +229,26 @@ function createFloatingHeart() {
         -4 + Math.random() * 2,
         (Math.random() - 0.5) * 4
     );
-    sprite.scale.set(0.3, 0.3, 1);
+    sprite.scale.set(0.5, 0.5, 1); // Increased scale
     sprite.userData = {
         velocity: new THREE.Vector3(
-            (Math.random() - 0.5) * 0.2,
-            0.3 + Math.random() * 0.2,
-            (Math.random() - 0.5) * 0.1
+            (Math.random() - 0.5) * 0.3,
+            0.4 + Math.random() * 0.3,
+            (Math.random() - 0.5) * 0.15
         ),
-        life: 4.0,
-        rotationSpeed: (Math.random() - 0.5) * 0.05
+        life: 4.5,
+        rotationSpeed: (Math.random() - 0.5) * 0.06
     };
     
     scene.add(sprite);
     floatingHearts.push(sprite);
 }
 
-// Sparkle effects
+// Sparkle effects with increased scale and count
 function createSparkles() {
-    for (let i = 0; i < 20; i++) {
-        const geometry = new THREE.SphereGeometry(0.02, 6, 4);
+    for (let i = 0; i < 30; // Increased count
+        i++) {
+        const geometry = new THREE.SphereGeometry(0.03, 8, 6); // Slightly larger
         const material = new THREE.MeshBasicMaterial({
             color: new THREE.Color(`hsl(${Math.random() * 60 + 300}, 100%, 90%)`),
             transparent: true,
@@ -258,12 +257,12 @@ function createSparkles() {
         
         const sparkle = new THREE.Mesh(geometry, material);
         sparkle.position.set(
-            (Math.random() - 0.5) * 6,
-            (Math.random() - 0.5) * 6,
-            (Math.random() - 0.5) * 6
+            (Math.random() - 0.5) * 8, // Wider spread
+            (Math.random() - 0.5) * 8,
+            (Math.random() - 0.5) * 8
         );
         sparkle.userData = {
-            life: 2.0 + Math.random() * 2.0,
+            life: 2.5 + Math.random() * 2.5,
             twinkleSpeed: 2 + Math.random() * 3,
             originalOpacity: 0.9
         };
@@ -273,9 +272,9 @@ function createSparkles() {
     }
 }
 
-// Rainbow expanding rings
+// Rainbow expanding rings with increased scale
 function createRainbowRing() {
-    const geometry = new THREE.RingGeometry(0.1, 0.2, 32);
+    const geometry = new THREE.RingGeometry(0.15, 0.3, 32); // Larger initial size
     const material = new THREE.MeshBasicMaterial({
         color: new THREE.Color(`hsl(${Math.random() * 360}, 80%, 70%)`),
         transparent: true,
@@ -286,9 +285,9 @@ function createRainbowRing() {
     const ring = new THREE.Mesh(geometry, material);
     ring.position.set(0, 0, 0);
     ring.userData = {
-        life: 3.0,
-        expandSpeed: 0.02,
-        maxScale: 3 + Math.random() * 2
+        life: 3.5,
+        expandSpeed: 0.03, // Faster expansion
+        maxScale: 4 + Math.random() * 3 // Larger max scale
     };
     
     scene.add(ring);
@@ -301,9 +300,8 @@ let zoomProgress = 0;
 let buttonsShown = false;
 let celebrationActive = false;
 let celebrationTime = 0;
-let isAudioPlaying = false; // Track audio state to prevent multiple play attempts
+let isAudioPlaying = false;
 
-// Mouse interaction
 document.addEventListener('mousemove', (event) => {
     mouseX = (event.clientX / window.innerWidth) * 2 - 1;
     mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
@@ -315,7 +313,6 @@ function animate() {
     requestAnimationFrame(animate);
     time += 0.008;
 
-    // Smooth camera rotation
     currentRotationX += (targetRotationX - currentRotationX) * 0.02;
     currentRotationY += (targetRotationY - currentRotationY) * 0.02;
     
@@ -346,32 +343,27 @@ function animate() {
             celebrationSprite.position.y = 2 + Math.sin(celebrationTime * 2) * 0.1;
         }
         
-        // Slow fireworks every 2 seconds
-        if (celebrationTime % 2.0 < 0.016) {
+        if (celebrationTime % 1.8 < 0.016) {
             createSlowFirework(
+                (Math.random() - 0.5) * 5,
                 (Math.random() - 0.5) * 4,
-                (Math.random() - 0.5) * 3,
-                (Math.random() - 0.5) * 2
+                (Math.random() - 0.5) * 3
             );
         }
         
-        // Floating hearts every 0.8 seconds
-        if (celebrationTime % 0.8 < 0.016) {
+        if (celebrationTime % 0.7 < 0.016) {
             createFloatingHeart();
         }
         
-        // Sparkles every 1.5 seconds
-        if (celebrationTime % 1.5 < 0.016) {
+        if (celebrationTime % 1.3 < 0.016) {
             createSparkles();
         }
         
-        // Rainbow rings every 3 seconds
-        if (celebrationTime % 3.0 < 0.016) {
+        if (celebrationTime % 2.7 < 0.016) {
             createRainbowRing();
         }
     }
 
-    // Animate sprites with enhanced effects
     sprites.forEach(sprite => {
         if (sprite.userData.isAnimating) {
             sprite.userData.progress += 0.012;
@@ -397,7 +389,6 @@ function animate() {
         sprite.scale.set(0.25 * pulse, 0.06 * pulse, 1);
     });
 
-    // Update slow fireworks
     fireworks.forEach(particles => {
         particles.children.forEach(sphere => {
             sphere.userData.life -= 0.012;
@@ -417,12 +408,11 @@ function animate() {
         }
     });
 
-    // Update floating hearts
     floatingHearts.forEach(heart => {
         heart.userData.life -= 0.008;
         if (heart.userData.life > 0) {
             heart.position.add(heart.userData.velocity.clone().multiplyScalar(0.04));
-            heart.material.opacity = (heart.userData.life / 4.0) * 0.8;
+            heart.material.opacity = (heart.userData.life / 4.5) * 0.8;
             heart.rotation.z += heart.userData.rotationSpeed;
             heart.userData.velocity.x += Math.sin(time + heart.position.y) * 0.002;
         } else {
@@ -431,7 +421,6 @@ function animate() {
         }
     });
 
-    // Update sparkles
     sparkles.forEach(sparkle => {
         sparkle.userData.life -= 0.012;
         if (sparkle.userData.life > 0) {
@@ -459,7 +448,6 @@ function animate() {
         }
     });
 
-    // Dynamic lighting effects
     pointLight.intensity = 1.5 + Math.sin(time * 2) * 0.3;
     pointLight2.intensity = 1.2 + Math.cos(time * 1.5) * 0.3;
     pointLight.position.x = 5 + Math.sin(time) * 2;
@@ -476,27 +464,24 @@ window.addEventListener('resize', () => {
 });
 
 function playAudio() {
-    // Check if audio is already playing or in progress to prevent multiple calls
     if (isAudioPlaying || !audio.paused) {
         console.log("Audio is already playing or in progress.");
         return;
     }
 
-    // Ensure audio is loaded
     if (audio.readyState < 2) {
         console.log("Audio is not ready yet, waiting for canplay event...");
         audio.addEventListener('canplay', () => {
             console.log("Audio is ready to play.");
             attemptPlay();
         }, { once: true });
-        audio.load(); // Reload the audio to ensure it's ready
+        audio.load();
         return;
     }
 
     attemptPlay();
 
     function attemptPlay() {
-        // Resume AudioContext if suspended
         if (audioCtx.state === 'suspended') {
             audioCtx.resume().then(() => {
                 console.log("AudioContext resumed successfully.");
@@ -519,7 +504,6 @@ function playAudio() {
             }).catch(error => {
                 console.error("Audio playback failed:", error);
                 isAudioPlaying = false;
-                // Display a user-friendly message
                 alert("Failed to play audio. Please ensure the audio file exists and try again.");
             });
         }
@@ -564,24 +548,22 @@ yesBtn.addEventListener('click', () => {
     celebrationActive = true;
     celebrationTime = 0;
     
-    // Initial burst of effects
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 4; i++) { // Increased number of fireworks
         setTimeout(() => createSlowFirework(
-            (Math.random() - 0.5) * 3,
-            (Math.random() - 0.5) * 2,
-            (Math.random() - 0.5) * 2
-        ), i * 800);
+            (Math.random() - 0.5) * 5,
+            (Math.random() - 0.5) * 4,
+            (Math.random() - 0.5) * 3
+        ), i * 600); // Shorter intervals
     }
     
-    for (let i = 0; i < 5; i++) {
-        setTimeout(createFloatingHeart, i * 200);
+    for (let i = 0; i < 7; i++) { // Increased number of hearts
+        setTimeout(createFloatingHeart, i * 150); // Shorter intervals
     }
     
     setTimeout(createSparkles, 500);
-    setTimeout(createRainbowRing, 1000);
+    setTimeout(createRainbowRing, 800);
 });
 
-// Enhanced "No" button behavior
 noBtn.addEventListener('mouseenter', () => {
     const angle = Math.random() * 2 * Math.PI;
     const distance = 80;
@@ -604,7 +586,6 @@ noBtn.addEventListener('touchstart', (event) => {
     noBtn.style.opacity = '0.6';
 });
 
-// Touch controls for mobile
 let isTouching = false;
 let prevTouchX = 0;
 let prevTouchY = 0;
@@ -634,7 +615,6 @@ renderer.domElement.addEventListener('touchend', () => {
     isTouching = false;
 });
 
-// Log audio errors for debugging
 audio.addEventListener('error', (e) => {
     console.error("Audio element error:", e);
     alert("Error loading audio file. Please check if 'taylor.mp3' exists in the correct directory.");
