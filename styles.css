@@ -107,15 +107,15 @@ body {
 }
 
 .title {
-    font-size: clamp(28px, 8vw, 36px);
+    font-size: clamp(24px, 7vw, 32px);
     margin-bottom: 15px;
     text-shadow: 0 0 15px #ff66b2;
     animation: pulse 2s infinite;
 }
 
 .subtitle {
-    font-size: clamp(18px, 5vw, 20px);
-    margin-bottom: 30px;
+    font-size: clamp(16px, 4.5vw, 18px);
+    margin-bottom: 25px;
     opacity: 0.8;
 }
 
@@ -133,11 +133,13 @@ canvas {
 @media (max-width: 768px) {
     #start-screen {
         padding: 15px;
+        justify-content: center;
+        gap: 10px;
     }
 
     #start-btn {
         padding: 10px 25px;
-        font-size: clamp(16px, 6vw, 18px);
+        font-size: clamp(16px, 5.5vw, 18px);
     }
 
     #audio-control {
@@ -164,28 +166,52 @@ canvas {
     }
 
     .title {
-        font-size: clamp(24px, 9vw, 30px);
+        font-size: clamp(20px, 6.5vw, 28px);
+        margin-bottom: 10px;
     }
 
     .subtitle {
-        font-size: clamp(16px, 6vw, 18px);
+        font-size: clamp(14px, 4vw, 16px);
+        margin-bottom: 20px;
     }
 }
 
+/* Extra small devices */
 @media (max-width: 480px) {
-    canvas {
-        width: 100vw !important;
-        height: 100vh !important;
+    #start-screen {
+        padding: 10px;
+        gap: 8px;
+    }
+
+    #start-btn {
+        padding: 8px 20px;
+        font-size: clamp(14px, 6vw, 16px);
     }
 
     #response-buttons {
         flex-direction: column;
         align-items: center;
         gap: 10px;
+        bottom: 15px;
     }
 
     .response-btn {
         width: 80%;
         max-width: 200px;
+        padding: 8px 15px;
+        font-size: clamp(12px, 5vw, 14px);
+    }
+
+    .title {
+        font-size: clamp(18px, 6vw, 24px);
+    }
+
+    .subtitle {
+        font-size: clamp(12px, 4vw, 14px);
+    }
+
+    canvas {
+        width: 100vw !important;
+        height: 100vh !important;
     }
 }
