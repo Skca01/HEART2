@@ -17,7 +17,6 @@ const noBtn = document.getElementById('no-btn');
 
 camera.position.set(0, 0, 6);
 
-// Enhanced OrbitControls simulation
 let mouseX = 0, mouseY = 0;
 let targetRotationX = 0, targetRotationY = 0;
 let currentRotationX = 0, currentRotationY = 0;
@@ -44,7 +43,7 @@ const initialPositions = [];
 const targetPositions = [];
 
 for (let i = 0; i < density; i++) {
-    const u = Math.random();
+    const u = Math.random ();
     const v = Math.random();
     const targetPos = heartPosition(u, v);
     const theta = Math.random() * 2 * Math.PI;
@@ -146,12 +145,11 @@ function createCelebrationMessage() {
     });
     celebrationSprite = new THREE.Sprite(material);
     celebrationSprite.position.set(0, 2, 0);
-    celebrationSprite.scale.set(2.0, 1.0, 1); // Increased scale for celebration message
+    celebrationSprite.scale.set(2.0, 1.0, 1);
     heartGroup.add(celebrationSprite);
 }
 createCelebrationMessage();
 
-// Enhanced lighting
 const ambientLight = new THREE.AmbientLight(0x332233, 0.4);
 scene.add(ambientLight);
 const pointLight = new THREE.PointLight(0xff66b2, 1.5, 12);
@@ -164,20 +162,18 @@ const pointLight3 = new THREE.PointLight(0xff99cc, 0.8, 15);
 pointLight3.position.set(0, 8, 0);
 scene.add(pointLight3);
 
-// Enhanced celebration effects
 const fireworks = [];
 const loveParticles = [];
 const floatingHearts = [];
 const sparkles = [];
 const rainbowRings = [];
 
-// Slow, elegant fireworks with increased scale and particle count
 function createSlowFirework(x = 0, y = 0, z = 0) {
-    const particleCount = 60; // Increased particle count
+    const particleCount = 60;
     const particles = new THREE.Group();
     
     for (let i = 0; i < particleCount; i++) {
-        const geometry = new THREE.SphereGeometry(0.07, 10, 8); // Larger size
+        const geometry = new THREE.SphereGeometry(0.07, 10, 8);
         const material = new THREE.MeshBasicMaterial({
             color: new THREE.Color(`hsl(${Math.random() * 60 + 300}, 90%, 75%)`),
             transparent: true,
@@ -205,13 +201,12 @@ function createSlowFirework(x = 0, y = 0, z = 0) {
     fireworks.push(particles);
 }
 
-// Floating heart shapes with increased scale
 function createFloatingHeart() {
     const canvas = document.createElement('canvas');
-    canvas.width = 96; // Increased canvas size
+    canvas.width = 96;
     canvas.height = 96;
     const ctx = canvas.getContext('2d');
-    ctx.font = 'bold 60px serif'; // Larger font
+    ctx.font = 'bold 60px serif';
     ctx.fillStyle = `hsl(${Math.random() * 30 + 330}, 90%, 80%)`;
     ctx.textAlign = 'center';
     ctx.fillText('💖', 48, 70);
@@ -229,7 +224,7 @@ function createFloatingHeart() {
         -4 + Math.random() * 2,
         (Math.random() - 0.5) * 4
     );
-    sprite.scale.set(0.5, 0.5, 1); // Increased scale
+    sprite.scale.set(0.5, 0.5, 1);
     sprite.userData = {
         velocity: new THREE.Vector3(
             (Math.random() - 0.5) * 0.3,
@@ -244,11 +239,9 @@ function createFloatingHeart() {
     floatingHearts.push(sprite);
 }
 
-// Sparkle effects with increased scale and count
 function createSparkles() {
-    for (let i = 0; i < 30; // Increased count
-        i++) {
-        const geometry = new THREE.SphereGeometry(0.03, 8, 6); // Slightly larger
+    for (let i = 0; i < 30; i++) {
+        const geometry = new THREE.SphereGeometry(0.03, 8, 6);
         const material = new THREE.MeshBasicMaterial({
             color: new THREE.Color(`hsl(${Math.random() * 60 + 300}, 100%, 90%)`),
             transparent: true,
@@ -257,7 +250,7 @@ function createSparkles() {
         
         const sparkle = new THREE.Mesh(geometry, material);
         sparkle.position.set(
-            (Math.random() - 0.5) * 8, // Wider spread
+            (Math.random() - 0.5) * 8,
             (Math.random() - 0.5) * 8,
             (Math.random() - 0.5) * 8
         );
@@ -272,9 +265,8 @@ function createSparkles() {
     }
 }
 
-// Rainbow expanding rings with increased scale
 function createRainbowRing() {
-    const geometry = new THREE.RingGeometry(0.15, 0.3, 32); // Larger initial size
+    const geometry = new THREE.RingGeometry(0.15, 0.3, 32);
     const material = new THREE.MeshBasicMaterial({
         color: new THREE.Color(`hsl(${Math.random() * 360}, 80%, 70%)`),
         transparent: true,
@@ -286,8 +278,8 @@ function createRainbowRing() {
     ring.position.set(0, 0, 0);
     ring.userData = {
         life: 3.5,
-        expandSpeed: 0.03, // Faster expansion
-        maxScale: 4 + Math.random() * 3 // Larger max scale
+        expandSpeed: 0.03,
+        maxScale: 4 + Math.random() * 3
     };
     
     scene.add(ring);
@@ -370,8 +362,8 @@ function animate() {
             if (sprite.userData.progress < 1) {
                 const t = sprite.userData.progress;
                 const swirl = 1 - t;
-                const swirlPos = sprite.userData.initial.clone();
                 sprite.userData.swirlAngle += 0.08;
+                const swirlPos = sprite.userData.initial.clone();
                 swirlPos.x += Math.cos(sprite.userData.swirlAngle) * swirl * 2;
                 swirlPos.y += Math.sin(sprite.userData.swirlAngle) * swirl * 2;
                 sprite.position.lerpVectors(
@@ -434,7 +426,6 @@ function animate() {
         }
     });
 
-    // Update rainbow rings
     rainbowRings.forEach(ring => {
         ring.userData.life -= 0.01;
         if (ring.userData.life > 0) {
@@ -465,14 +456,11 @@ window.addEventListener('resize', () => {
 
 function playAudio() {
     if (isAudioPlaying || !audio.paused) {
-        console.log("Audio is already playing or in progress.");
         return;
     }
 
     if (audio.readyState < 2) {
-        console.log("Audio is not ready yet, waiting for canplay event...");
         audio.addEventListener('canplay', () => {
-            console.log("Audio is ready to play.");
             attemptPlay();
         }, { once: true });
         audio.load();
@@ -484,7 +472,6 @@ function playAudio() {
     function attemptPlay() {
         if (audioCtx.state === 'suspended') {
             audioCtx.resume().then(() => {
-                console.log("AudioContext resumed successfully.");
                 startAudioPlayback();
             }).catch(error => {
                 console.error("Failed to resume AudioContext:", error);
@@ -499,10 +486,8 @@ function playAudio() {
         const playPromise = audio.play();
         if (playPromise !== undefined) {
             playPromise.then(() => {
-                console.log("Audio playback started successfully.");
                 audioControl.textContent = 'Pause Music';
             }).catch(error => {
-                console.error("Audio playback failed:", error);
                 isAudioPlaying = false;
                 alert("Failed to play audio. Please ensure the audio file exists and try again.");
             });
@@ -515,7 +500,6 @@ function pauseAudio() {
         audio.pause();
         isAudioPlaying = false;
         audioControl.textContent = 'Play Music';
-        console.log("Audio paused.");
     }
 }
 
@@ -548,16 +532,16 @@ yesBtn.addEventListener('click', () => {
     celebrationActive = true;
     celebrationTime = 0;
     
-    for (let i = 0; i < 4; i++) { // Increased number of fireworks
+    for (let i = 0; i < 4; i++) {
         setTimeout(() => createSlowFirework(
             (Math.random() - 0.5) * 5,
             (Math.random() - 0.5) * 4,
             (Math.random() - 0.5) * 3
-        ), i * 600); // Shorter intervals
+        ), i * 600);
     }
     
-    for (let i = 0; i < 7; i++) { // Increased number of hearts
-        setTimeout(createFloatingHeart, i * 150); // Shorter intervals
+    for (let i = 0; i < 7; i++) {
+        setTimeout(createFloatingHeart, i * 150);
     }
     
     setTimeout(createSparkles, 500);
@@ -565,9 +549,18 @@ yesBtn.addEventListener('click', () => {
 });
 
 noBtn.addEventListener('mouseenter', () => {
+    const maxDistance = Math.min(window.innerWidth, window.innerHeight) * 0.1;
     const angle = Math.random() * 2 * Math.PI;
-    const distance = 80;
-    noBtn.style.transform = `translate(${Math.cos(angle) * distance}px, ${Math.sin(angle) * distance}px) scale(0.9)`;
+    const distance = Math.min(50, maxDistance);
+    const newX = Math.cos(angle) * distance;
+    const newY = Math.sin(angle) * distance;
+    const currentTransform = window.getComputedStyle(noBtn).transform;
+    const currentMatrix = new DOMMatrix(currentTransform);
+    const currentX = currentMatrix.m41;
+    const currentY = currentMatrix.m42;
+    const boundedX = Math.max(-window.innerWidth * 0.3, Math.min(window.innerWidth * 0.3, currentX + newX));
+    const boundedY = Math.max(-window.innerHeight * 0.3 + 60, Math.min(window.innerHeight * 0.3 - 60, currentY + newY));
+    noBtn.style.transform = `translate(${boundedX}px, ${boundedY}px) scale(0.9)`;
     noBtn.style.opacity = '0.7';
 });
 
@@ -580,9 +573,18 @@ noBtn.addEventListener('mouseleave', () => {
 
 noBtn.addEventListener('touchstart', (event) => {
     event.preventDefault();
+    const maxDistance = Math.min(window.innerWidth, window.innerHeight) * 0.1;
     const angle = Math.random() * 2 * Math.PI;
-    const distance = 80;
-    noBtn.style.transform = `translate(${Math.cos(angle) * distance}px, ${Math.sin(angle) * distance}px) scale(0.8)`;
+    const distance = Math.min(50, maxDistance);
+    const newX = Math.cos(angle) * distance;
+    const newY = Math.sin(angle) * distance;
+    const currentTransform = window.getComputedStyle(noBtn).transform;
+    const currentMatrix = new DOMMatrix(currentTransform);
+    const currentX = currentMatrix.m41;
+    const currentY = currentMatrix.m42;
+    const boundedX = Math.max(-window.innerWidth * 0.3, Math.min(window.innerWidth * 0.3, currentX + newX));
+    const boundedY = Math.max(-window.innerHeight * 0.3 + 60, Math.min(window.innerHeight * 0.3 - 60, currentY + newY));
+    noBtn.style.transform = `translate(${boundedX}px, ${boundedY}px) scale(0.8)`;
     noBtn.style.opacity = '0.6';
 });
 
@@ -616,6 +618,5 @@ renderer.domElement.addEventListener('touchend', () => {
 });
 
 audio.addEventListener('error', (e) => {
-    console.error("Audio element error:", e);
     alert("Error loading audio file. Please check if 'taylor.mp3' exists in the correct directory.");
 });
