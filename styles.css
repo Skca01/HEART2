@@ -152,20 +152,23 @@ canvas {
 
     #response-buttons {
         bottom: 25px;
+        display: flex !important;
+        flex-direction: row !important;
         gap: 15px;
-        flex-direction: row;
         justify-content: center;
         align-items: center;
-        width: 90%;
-        max-width: 400px;
+        width: 80%;
+        left: 50%;
+        transform: translateX(-50%);
     }
 
     .response-btn {
-        padding: 10px 20px;
+        padding: 12px 20px;
         font-size: clamp(14px, 5vw, 16px);
-        min-width: 100px;
-        flex: 1;
-        max-width: 140px;
+        width: 45%;
+        min-width: unset;
+        max-width: unset;
+        flex: none;
     }
 
     #yes-btn:hover {
@@ -197,20 +200,23 @@ canvas {
 
     #response-buttons {
         bottom: 20px;
+        display: flex !important;
+        flex-direction: row !important;
         gap: 12px;
-        flex-direction: row;
         justify-content: center;
         align-items: center;
         width: 85%;
-        max-width: 350px;
+        left: 50%;
+        transform: translateX(-50%);
     }
 
     .response-btn {
         padding: 12px 18px;
         font-size: clamp(13px, 4.5vw, 15px);
-        min-width: 90px;
-        flex: 1;
-        max-width: 120px;
+        width: 45%;
+        min-width: unset;
+        max-width: unset;
+        flex: none;
     }
 
     #yes-btn:hover {
