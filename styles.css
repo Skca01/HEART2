@@ -9,6 +9,7 @@ body {
     overflow: hidden;
     font-family: 'Georgia', serif;
     height: 100vh;
+    width: 100vw;
 }
 
 #start-screen {
@@ -24,73 +25,79 @@ body {
     justify-content: center;
     z-index: 1000;
     color: #ff99cc;
+    padding: 20px;
+    text-align: center;
 }
 
 #start-btn {
     background: linear-gradient(45deg, #ff3399, #ff66b2);
     border: none;
-    padding: 15px 40px;
-    font-size: 24px;
+    padding: 12px 30px;
+    font-size: clamp(18px, 5vw, 22px);
     color: white;
     border-radius: 50px;
     cursor: pointer;
-    box-shadow: 0 10px 30px rgba(255, 51, 153, 0.3);
+    box-shadow: 0 8px 25px rgba(255, 51, 153, 0.3);
     transition: all 0.3s ease;
     font-family: 'Georgia', serif;
     font-weight: bold;
 }
 
 #start-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 15px 40px rgba(255, 51, 153, 0.5);
+    transform: translateY(-4px);
+    box-shadow: 0 18px 45px rgba(255, 51, 153, 0.5);
 }
 
 #audio-control {
     position: fixed;
-    top: 20px;
-    right: 20px;
+    top: 15px;
+    right: 15px;
     background: rgba(255, 51, 153, 0.8);
     border: none;
-    padding: 10px 20px;
+    padding: 8px 16px;
     color: white;
-    border-radius: 25px;
+    border-radius: 20px;
     cursor: pointer;
     display: none;
     font-family: 'Georgia', serif;
-    backdrop-filter: blur(10px);
+    font-size: clamp(14px, 4vw, 16px);
+    backdrop-filter: blur(8px);
 }
 
 #response-buttons {
     position: fixed;
-    bottom: 50px;
+    bottom: 30px;
     left: 50%;
     transform: translateX(-50%);
     display: none;
-    gap: 30px;
+    gap: 20px;
     z-index: 100;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .response-btn {
-    padding: 15px 30px;
-    font-size: 20px;
+    padding: 12px 25px;
+    font-size: clamp(16px, 4.5vw, 18px);
     border: none;
-    border-radius: 30px;
+    border-radius: 25px;
     cursor: pointer;
     font-family: 'Georgia', serif;
     font-weight: bold;
     transition: all 0.3s ease;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(8px);
 }
 
 #yes-btn {
     background: linear-gradient(45deg, #ff3399, #ff66b2);
     color: white;
-    box-shadow: 0 8px 25px rgba(255, 51, 153, 0.4);
+    box-shadow: 0 10px 30px rgba(255, 51, 153, 0.5);
 }
 
 #yes-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 35px rgba(255, 51, 153, 0.6);
+    transform: translateY(-5px) scale(1.15);
+    box-shadow: 0 20px 50px rgba(255, 51, 153, 0.7);
+    filter: brightness(1.2);
 }
 
 #no-btn {
@@ -100,15 +107,15 @@ body {
 }
 
 .title {
-    font-size: 48px;
-    margin-bottom: 20px;
-    text-shadow: 0 0 20px #ff66b2;
+    font-size: clamp(28px, 8vw, 36px);
+    margin-bottom: 15px;
+    text-shadow: 0 0 15px #ff66b2;
     animation: pulse 2s infinite;
 }
 
 .subtitle {
-    font-size: 24px;
-    margin-bottom: 40px;
+    font-size: clamp(18px, 5vw, 20px);
+    margin-bottom: 30px;
     opacity: 0.8;
 }
 
@@ -119,4 +126,66 @@ body {
 
 canvas {
     display: block;
+    width: 100vw !important;
+    height: 100vh !important;
+}
+
+@media (max-width: 768px) {
+    #start-screen {
+        padding: 15px;
+    }
+
+    #start-btn {
+        padding: 10px 25px;
+        font-size: clamp(16px, 6vw, 18px);
+    }
+
+    #audio-control {
+        top: 10px;
+        right: 10px;
+        padding: 6px 12px;
+        font-size: clamp(12px, 4.5vw, 14px);
+    }
+
+    #response-buttons {
+        bottom: 20px;
+        gap: 15px;
+        padding: 0 10px;
+    }
+
+    .response-btn {
+        padding: 10px 20px;
+        font-size: clamp(14px, 5vw, 16px);
+    }
+
+    #yes-btn:hover {
+        transform: translateY(-4px) scale(1.2);
+        box-shadow: 0 15px 40px rgba(255, 51, 153, 0.7);
+    }
+
+    .title {
+        font-size: clamp(24px, 9vw, 30px);
+    }
+
+    .subtitle {
+        font-size: clamp(16px, 6vw, 18px);
+    }
+}
+
+@media (max-width: 480px) {
+    canvas {
+        width: 100vw !important;
+        height: 100vh !important;
+    }
+
+    #response-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .response-btn {
+        width: 80%;
+        max-width: 200px;
+    }
 }
